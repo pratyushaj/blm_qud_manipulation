@@ -1,0 +1,279 @@
+<html>
+
+<head>
+    <title>Black Lives Matter Experiment</title>
+
+    <!--JS-->
+
+    <!-- external general utilities -->
+    <script src="../_shared/js/jquery-1.11.1.min.js "></script>
+    <script src="../_shared/full-projects/jquery-ui/jquery-ui.min.js"></script>
+    <script src="../_shared/js/underscore-min.js"></script>
+    <!-- if you want to draw stuff: -->
+    <script src="../_shared/js/raphael-min.js"></script>
+
+    <!-- cocolab experiment logic -->
+    <script src="../_shared/js/exp-V2.js"></script>
+    <script src="../_shared/js/stream-V2.js"></script>
+
+    <!-- cocolab general utilities -->
+    <script src="../_shared/js/mmturkey.js "></script>
+    <script src="../_shared/js/browserCheck.js"></script>
+    <script src="../_shared/js/utils.js"></script>
+    <!-- if you want to draw cute creatures (depends on raphael): -->
+    <!-- <script src="../_shared/js/ecosystem.js"></script> -->
+
+    <!-- experiment specific helper functions -->
+    <!-- <script src="js/local-utils.js"></script> -->
+
+    <!--CSS-->
+    <link href="../_shared/full-projects/jquery-ui/jquery-ui.min.css" rel="stylesheet" type="text/css"/>
+    <link href="../_shared/css/cocolab-style.css" rel="stylesheet" type="text/css"/>
+    <link href="css/local-style.css" rel="stylesheet" type="text/css"/>
+
+    <!-- experiment file -->
+    <script src="js/qud-manipulation.js"></script>
+    <script src="stimuli/corpus.js"></script>
+    <script src="stimuli/names.js"></script>
+
+    <script> 
+      var myimages=new Array("../expt-files/images/context1.1.png","../expt-files/images/context1.3.png","../expt-files/images/context1.3reg.png","../expt-files/images/context2.1.png","../expt-files/images/context2.3.png","../expt-files/images/context2.3reg.png","../expt-files/images/context3.1.png","../expt-files/images/context3.3.png","../expt-files/images/context3.3reg.png","../expt-files/images/context4.1.png","../expt-files/images/context4.3.png","../expt-files/images/context4.3reg.png","../expt-files/images/contextX.2.png")
+      function preloadimages(){
+        for (i=0;i<preloadimages.arguments.length;i++){
+          myimages[i]=new Image()
+          myimages[i].src=preloadimages.arguments[i]
+          }
+          }
+    </script>
+    
+</head>
+
+<body onload="init();">
+  <noscript>This task requires JavaScript.</noscript>
+
+  <div class="slide" id="i0" >
+    <img src="../_shared/images/alpslogo.png" alt="Stanford ALPS Lab" id="cocologo"></img>
+    <p id="alpslab">Stanford ALPS Lab</p>
+    <p id="instruct-text">This HIT occurs in 2 parts. The first involves reading short cover stories in English and then making judgments about the actors in the stories. Finally, you'll answer some questions about yourself. No identifying information will be collected. <br><br>
+    The task should take about six minutes. Please pay attention -- thanks!</p>
+    <button id="start_button" type="button">Start Experiment</button>
+    <p id="legal">We invite you to participate in a research study on language production and comprehension.
+      Your experimenter will ask you to do a linguistic task such as reading sentences or words,
+      naming pictures or describing scenes, making up sentences of your own, or participating in a
+      simple language game.
+      There are no risks or benefits of any kind involved in this study.
+      You will be paid for your participation at the posted rate.
+      If you have read this form and have decided to participate in this experiment, please
+      understand your participation is voluntary and you have the right to withdraw your consent or
+      discontinue participation at any time without penalty or loss of benefits to which you are
+      otherwise entitled. You have the right to refuse to do particular tasks. Your individual privacy
+      will be maintained in all published and written data resulting from the study. You may print
+      this form for your records.
+      If you have any questions, concerns or complaints about this research study, its procedures,
+      risks and benefits, you should contact one of the Protocol Directors Penelope Eckert at
+      (650)-725-1564.
+      If you are not satisfied with how this study is being conducted, or if you have any concerns,
+      complaints, or general questions about the research or your rights as a participant, please
+      contact the Stanford Institutional Review Board (IRB) to speak to someone independent of the
+      research team at (650)-723-2480 or toll free at 1-866-680-2906. You can also write to the
+      Stanford IRB, Stanford University, 3000 El Camino Real, Five Palo Alto Square, 4th Floor,
+      Palo Alto, CA 94306 USA.
+If you agree to participate, please proceed to the study tasks.</p>
+  </div>
+
+  <div class="slide" id="instructions1">
+    <h3>Part 1 Instructions</h3>
+    <p> You will read 45 short cover stories about various groups of people. For each story, make a judgment about the groups of people in the story and use the sliders to indicate it. Don't spend a lot of time thinking about how to respond, simply choose the response that best captures your gut response. </p>
+    <!-- <p class="instruction_condition">{{}}</p> -->
+    <button onclick="_s.button()">Continue</button>
+  </div>
+
+  <div class="slide" id="cover_stories">
+
+  <p class="name_said"></p>
+
+    <p>Michelle is a software developer at Apple. She works on the Apple Music group, which is composed of many subteams. Each of the subteams in her larger group is composed of either all men or all women. The other day at her team's weekly meeting, her boss unveiled that he would be choosing a subteam to work on a new project, and that he would choose a subteam based on their high level of competence. She raised her hand to speak in the meeting and said, </p>
+
+    <p><b>"Women are competent."</b></p>
+
+<!--    <p><span class = "woman">{{}}</span> sold a <span class="noun">{{}}</span> in her store.</p>
+
+    <p><span class="man1">{{}}</span> entered <span class = "woman">{{}}</span>'s store, noticed the <span class="noun">{{}}</span>, and said:</p>
+    <p><span class="man1">{{}}</span> and <span class="man2">{{}}</span> see the same <span class="noun">{{}}</span>.</p> 
+    <p><span class="man1">{{}}</span> says: <b><span class="utterance1">{{}}</span></b></p>
+
+    <p><span class="man2">{{}}</span> responds: <b><span class="utterance2">{{}}</span></b></p>-->
+
+<!--     <p>Do the statements make sense?</p>
+    <label><input type="radio"  name="sense" value="Yes"/>Yes</label>
+    <label><input type="radio"  name="sense" value="No"/>No</label>
+    </br></br>
+ -->
+    <p><i>How competent are women?</i></p>
+
+    <table id="multi_slider_table" class="slider_table">
+<!--      <tr><td class="left">No, somebody must be wrong.</td><td class="right">Yes, it's a matter of opinion.</td></tr> -->
+      <tr><td>Extremely competent</td><td><div id="slider0" class="slider"></div></td><td>Extremely incompetent</td></tr>
+    </table>
+
+    <p><i>How competent are men?</i></p>
+
+    <table id="multi_slider_table" class="slider_table">
+<!--      <tr><td class="left">No, somebody must be wrong.</td><td class="right">Yes, it's a matter of opinion.</td></tr> -->
+      <tr><td>Extremely competent</td><td><div id="slider1" class="slider"></div></td><td>Extremely incompetent</td></tr>
+    </table>
+
+    <button onclick="_s.button()">Continue</button>
+    <div class="err">Please answer all questions before continuing.</div>
+
+  <div class="slide" id="instructions2">
+    <h3>Part 2 Instructions</h3>
+    <p> We will now ask you questions about you and how you relate to different groups of people.</p>
+    <!-- <p class="instruction_condition">{{}}</p> -->
+    <button onclick="_s.button()">Continue</button>
+  </div>
+
+<!-- ****************************************************************************
+  *******************************************************************************
+  *******************************************************************************
+  *******************************************************************************
+  *******************************************************************************
+  STILL UNDONE: PART 2 WITH SLIDERS AND RADIO BUTTONS FOR IDENTIFYING PEOPLE -->
+
+  <div class="slide" id="identity">
+
+  <p class="name_said"></p>
+
+    <p>Do you identify as a <span class = "singular">{{}}</span>?</p>
+    <div id = "radio_outer_container" align = 'center'>
+      <div id="radio_inner_container" align="left">
+<!--      <tr><td class="left">No, somebody must be wrong.</td><td class="right">Yes, it's a matter of opinion.</td></tr> -->
+      <!---<tr><td>No, somebody must be wrong.</td><td><div id="slider0" class="slider"></div></td><td>Yes, it's a matter of opinion.</td></tr>-->
+        <label><input type="radio"  name="response2" value="Yes"/>Yes</label>
+        <br/>
+        <label><input type="radio"  name="response2" value="No"/>No</span></label>
+        <br/>
+        <label><input type="radio"  name="response2" value="Confused"/>Not Sure</label>
+      </div>
+    </div>
+    <br/>
+
+<!--    <p><span class = "woman">{{}}</span> sold a <span class="noun">{{}}</span> in her store.</p>
+
+    <p><span class="man1">{{}}</span> entered <span class = "woman">{{}}</span>'s store, noticed the <span class="noun">{{}}</span>, and said:</p>
+    <p><span class="man1">{{}}</span> and <span class="man2">{{}}</span> see the same <span class="noun">{{}}</span>.</p> 
+    <p><span class="man1">{{}}</span> says: <b><span class="utterance1">{{}}</span></b></p>
+
+    <p><span class="man2">{{}}</span> responds: <b><span class="utterance2">{{}}</span></b></p>-->
+
+<!--     <p>Do the statements make sense?</p>
+    <label><input type="radio"  name="sense" value="Yes"/>Yes</label>
+    <label><input type="radio"  name="sense" value="No"/>No</label>
+    </br></br>
+ -->
+    <!--<p>How likeable do you find <span class = "noun">{{}}</span>?</p>
+
+    <table id="multi_slider_table" class="slider_table">
+      <tr><td class="left">No, somebody must be wrong.</td><td class="right">Yes, it's a matter of opinion.</td></tr>
+      <tr><td>Extremely unlikeable</td><td><div id="slider0" class="slider"></div></td><td>Extremely likeable</td></tr>
+    </table> -->
+
+    <button onclick="_s.button()">Continue</button>
+    <div class="err">Please answer all questions before continuing.</div>
+  </div>
+
+  <div class="slide" id="likeability">
+
+  <p class="name_said"></p>
+
+<!--    <p><span class = "woman">{{}}</span> sold a <span class="noun">{{}}</span> in her store.</p>
+
+    <p><span class="man1">{{}}</span> entered <span class = "woman">{{}}</span>'s store, noticed the <span class="noun">{{}}</span>, and said:</p>
+    <p><span class="man1">{{}}</span> and <span class="man2">{{}}</span> see the same <span class="noun">{{}}</span>.</p> 
+    <p><span class="man1">{{}}</span> says: <b><span class="utterance1">{{}}</span></b></p>
+
+    <p><span class="man2">{{}}</span> responds: <b><span class="utterance2">{{}}</span></b></p>-->
+
+<!--     <p>Do the statements make sense?</p>
+    <label><input type="radio"  name="sense" value="Yes"/>Yes</label>
+    <label><input type="radio"  name="sense" value="No"/>No</label>
+    </br></br>
+ -->
+    <p>How likeable do you find <span class = "noun">{{}}</span>?</p>
+
+    <table id="multi_slider_table" class="slider_table">
+<!--      <tr><td class="left">No, somebody must be wrong.</td><td class="right">Yes, it's a matter of opinion.</td></tr> -->
+      <tr><td>Extremely unlikeable</td><td><div id="slider0" class="slider"></div></td><td>Extremely likeable</td></tr>
+    </table>
+
+    <button onclick="_s.button()">Continue</button>
+    <div class="err">Please answer all questions before continuing.</div>
+  </div>
+
+  <div class="slide"  id="subj_info">
+    <div class="long_form">
+      <div class="subj_info_title">Additional information</div>
+      <p class="info">Answering these questions is optional, but will help us understand your answers.</p>
+      <p>Did you read the instructions and do you think you did the HIT correctly?</p>
+      <label><input type="radio"  name="assess" value="No"/>No</label>
+      <label><input type="radio"  name="assess" value="Yes"/>Yes</label>
+      <label><input type="radio"  name="assess" value="Confused"/>I was confused</label>
+
+      <p>Gender:
+        <select id="gender">
+          <label><option value=""/></label>
+          <label><option value="Male"/>Male</label>
+          <label><option value="Female"/>Female</label>
+          <label><option value="Other"/>Other</label>
+        </select>
+      </p>
+
+      <p>Age: <input type="text" id="age"/></p>
+
+      <p>Level Of Education:
+        <select id="education">
+          <label><option value="-1"/></label>
+          <label><option value="0"/>Some High School</label>
+          <label><option value="1"/>Graduated High School</label>
+          <label><option value="2"/>Some College</label>
+          <label><option value="3"/>Graduated College</label>
+          <label><option value="4"/>Hold a higher degree</label>
+        </select>
+      </p>
+
+      <p>Native Language: <input type="text" id="language"/></p>
+      <label>(the language(s) spoken at home when you were a child)</label>
+
+      <p>Did you enjoy the hit?</p>
+      <select id="enjoyment">
+        <label><option value="-1"></option></label>
+        <label><option value="0">Worse than the Average HIT</option></label>
+        <label><option value="1" >An Average HIT</option></label>
+        <label><option value="2">Better than average HIT</option></label>
+      </select>
+
+      <p>Did you respond truthfully to all of the questions? (You will be compensated regardless of your response.)</p>
+      <textarea id="comments" rows="3" cols="50"></textarea>
+      <br/>
+
+      <p>We would be interested in any comments you have about this experiment. Please type them here:</p>
+      <textarea id="comments" rows="3" cols="50"></textarea>
+      <br/>
+      <button onclick="_s.submit()">Submit</button>
+    </div>
+  </div>
+
+  <div id="thanks" class="slide js" >
+    <p  class="big">Thanks for your time!</p>
+  </div>
+
+  <div class="progress">
+    <span>Progress:</span>
+    <div class="bar-wrapper">
+      <div class="bar" width="0%">
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
