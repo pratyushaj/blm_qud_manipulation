@@ -28,139 +28,34 @@ function make_slides(f) {
     name : "cover_stories",
     present : stimuli,
     present_handle : function(stim) {
+
+      //hiding error message on first presentation
       $(".err").hide();
+
+      //create 2 sliders per trial, both set to null on first presentation
       this.init_sliders(); 
-      //var checked_radio  = $('input[name="response"]:checked');     
-      exp.sliderPost = null;
-      //checked_radio.val() = undefined;
-      // $('input[name="sense"]:checked').attr('checked',false);
+      exp.sliderPost1 = null;
+      exp.sliderPost2 = null;
+     
+      //getting access to stimuli
       this.stim = stim; //FRED: allows you to access stim in helpers
-      //var noun_data = _.sample(corpus.Noun)
-      //this.noun_data = noun_data;
-      //var noun = noun_data.noun;
-      //var animacy = noun_data.animacy;
-      $("input[type=radio]").attr("checked", null);
-
-      this.verbs = _.shuffle(["is","is not"])
-
-      var names_list = _.shuffle(names);
-
-      var man1 = names_list[0];
-      var man2 = names_list[1];
-      var pos = stim.POS
-      var uppercaseNoun = stim.Noun.charAt(0).toUpperCase() + stim.Noun.slice(1);
-
-      $(".man1").html(man1);
-
-      $(".man2").html(man2);
-
-      $(".noun").html((stim.Noun).toLowerCase());
-      $(".predicate").html((stim.Predicate))
-      $(".nounclass").html(stim.NounClass)
-
-      //$(".woman1").html(woman1);
-
-      //$(".woman2").html(man2);
-
-      //$(".utterance1").html("\"That "+ stim.Noun + " " + this.verbs[0] + " " + stim.Predicate + ".\"");
-
-      //$(".utterance2").html("\"You're wrong. That "+ stim.Noun + " " + this.verbs[1] + " "  + stim.Predicate + ".\"");
-
-      //Statement 1: Stimulus
-      if (stim.POS == 'adjective')
-      {
-        $(".stimulus").html("<strong>"+uppercaseNoun + " are " + stim.Predicate + ".</strong>");
-      }
-      else if (stim.POS == 'verb')
-      {
-        $(".stimulus").html("<strong>"+uppercaseNoun + " " + stim.Predicate + ".</strong>");
-      }
       
-      //Statement 2: Everyone 
-      if (stim.POS == 'adjective')
-      {
-        $(".everyone").html("Everyone is " + stim.Predicate + ".");
-      }
-      else if (stim.POS == 'verb')
-      {
-        if (stim.Predicate == 'lay eggs')
-        {
-          $(".everyone").html("Everyone lays eggs.");
-        }
-        else if (stim.Predicate == 'eat carrots'){
-          $(".everyone").html("Everyone eats carrots.");
-        }
-        else if (stim.Predicate == 'solve problems'){
-          $(".everyone").html("Everyone solves problems.");
-        }
-        else if (stim.Predicate == 'stretch'){
-          $(".everyone").html("Everyone stretches.");
-        }
-        else if (stim.Predicate == 'fly'){
-          $(".everyone").html("Everyone flies.");
-        }
-        else{
-          $(".everyone").html("Everyone " + stim.Predicate + "s.");
-        }
-      }
+      var pos = stim.POS
 
-      //Not all
-      if (stim.POS == 'adjective')
-      {
-        $(".notall").html("Not all " + stim.Noun + " are " + stim.Predicate + ".");
-      }
-      else if (stim.POS == 'verb')
-      {
-        $(".notall").html("Not all " + stim.Noun + " " + stim.Predicate + ".");
-      }
+      $(".crit_noun").html((stim.CritNoun));
+      $(".other_noun").html((stim.OtherNoun));
+      $(".predicate").html((stim.Predicate));
+      $(".opposite").html((stim.Opposite));
+      $(".statement").html(stim.Statement);
+      $(".cover_story").html(stim.CoverStory);
 
-
-      //No 
-      if (stim.POS == 'adjective')
-      {
-        $(".no").html("No, " + stim.Noun + " are not " + stim.Predicate + ".");
-      }
-      else if (stim.POS == 'verb')
-      {
-        $(".no").html("No, " + stim.Noun + " do not " + stim.Predicate + ".");
-      }
-
-      //Yes
-      if (stim.POS == 'adjective')
-      {
-        $(".yes").html("Yes, " + stim.Noun + " are " + stim.Predicate + ".");
-      }
-      else if (stim.POS == 'verb')
-      {
-        $(".yes").html("Yes, " + stim.Noun + " " + stim.Predicate + ".");
-      }
-
-
-//      this.sentence_types = _.shuffle(["yes","no"]);
-//      this.sentence_types = ["no","yes"];
-//      var sentences = {
-//        "yes": "Yes, it's a matter of opinion.",
-//        "no": "No, somebody must be wrong.",
-//      };
-
-//      this.n_sliders = this.sentence_types.length;
-		  this.n_sliders = 1;
-//      $(".slider_row").remove();
-//      for (var i=0; i<this.n_sliders; i++) {
-//        var sentence_type_left = this.sentence_types[0];
-//        var sentence_type_left = this.sentence_types[1];        
-//        var sentence_left = sentences[sentence_type_left];
-//        var sentence_right = sentences[sentence_type_right];        
-//        $("#multi_slider_table").append('<tr class="slider_row"><td class="slider_target" id="sentence0">' + "<font size='4'>" + sentence_left + "</font>" + '</td><td colspan="2"><div id="slider0" class="slider">-------[ ]--------</div></td><td class="slider_target" id="sentence1">' + "<font size='4'>" + sentence_right + "</font>" + '</td></tr>');
-//        utils.match_row_height("#multi_slider_table", ".slider_target");
-//      }
+		  this.n_sliders = 2;
 
     },
 
 
     button : function() {
-      var checked_radio  = $('input[name="response"]:checked');
-      if (checked_radio.val() != undefined) 
+      if (exp.sliderPost1 != null && exp.sliderPost2 !=null) 
       {
         this.log_responses();
         _stream.apply(this); //use exp.go() if and only if there is no "present" data.
@@ -172,11 +67,11 @@ function make_slides(f) {
 
     init_sliders : function() {
       utils.make_slider("#slider0", function(event, ui) {
-        exp.sliderPost = ui.value;
+        exp.sliderPost1 = ui.value;
       });
 
       utils.make_slider("#slider1", function(event, ui) {
-        exp.sliderPost = ui.value;
+        exp.sliderPost2 = ui.value;
       });
     },
 //    make_slider_callback : function(i) {
@@ -186,212 +81,20 @@ function make_slides(f) {
 //    },
     log_responses : function() {
         exp.data_trials.push({
-          "response" : $('input[name="response"]:checked').val(),
-          "noun" : this.stim.Noun,          
+          "response" : exp.sliderPost1,
+          "crit_noun" : this.stim.CritNoun,
+          "response_other":exp.sliderPost2,
+          "other_noun": this.stim.OtherNoun,         
           "predicate" : this.stim.Predicate,
           "nounclass" : this.stim.NounClass,
+          "qud":this.stim.QUD,
           "class" : this.stim.Class,                    
-          "firstutterance" : this.verbs[0],
           "block_number" : "1",      
           "slide_number" : exp.phase,
-          "block":"production"
+          "block":"cover_stories"
         });
     },
   });
-
-  slides.instructions2 = slide({
-    name : "instructions2",
-    start: function() {
-      $(".instruction_condition").html("Between subject instruction manipulation: "+ exp.instruction);
-    }, 
-    button : function() {
-      exp.go(); //use exp.go() if and only if there is no "present" data.
-    }
-  });
-
-  //put code for the second set of sliders here 
-  slides.identity = slide({
-    name : "identity",
-    present : second_stimuli, //make second set of stimuli here 
-    present_handle : function(stim) {
-      $(".err").hide();
-      this.init_sliders();      
-      exp.sliderPost = null;
-      // $('input[name="sense"]:checked').attr('checked',false);
-      this.stim = stim; //FRED: allows you to access stim in helpers
-      //var noun_data = _.sample(corpus.Noun)
-      //this.noun_data = noun_data;
-      //var noun = noun_data.noun;
-      //var animacy = noun_data.animacy;
-      //this.verbs = _.shuffle(["is","is not"])
-      //var names_list = _.shuffle(names);
-      $("input[type=radio]").attr("checked", null);
-
-      //var man1 = names_list[0];
-      //var man2 = names_list[1];
-
-      //$(".man1").html(man1);
-
-      //$(".man2").html(man2);
-
-      $(".singular").html(stim.Singular);
-      $(".noun").html(stim.Noun);
-
-      //$(".woman1").html(woman1);
-
-      //$(".woman2").html(man2);
-
-      //$(".utterance1").html("\"That "+ stim.Noun + " " + this.verbs[0] + " " + stim.Predicate + ".\"");
-
-      //$(".utterance2").html("\"You're wrong. That "+ stim.Noun + " " + this.verbs[1] + " "  + stim.Predicate + ".\"");
-
-//      this.sentence_types = _.shuffle(["yes","no"]);
-//      this.sentence_types = ["no","yes"];
-//      var sentences = {
-//        "yes": "Yes, it's a matter of opinion.",
-//        "no": "No, somebody must be wrong.",
-//      };
-
-//      this.n_sliders = this.sentence_types.length;
-    this.n_sliders = 1;
-//      $(".slider_row").remove();
-//      for (var i=0; i<this.n_sliders; i++) {
-//        var sentence_type_left = this.sentence_types[0];
-//        var sentence_type_left = this.sentence_types[1];        
-//        var sentence_left = sentences[sentence_type_left];
-//        var sentence_right = sentences[sentence_type_right];        
-//        $("#multi_slider_table").append('<tr class="slider_row"><td class="slider_target" id="sentence0">' + "<font size='4'>" + sentence_left + "</font>" + '</td><td colspan="2"><div id="slider0" class="slider">-------[ ]--------</div></td><td class="slider_target" id="sentence1">' + "<font size='4'>" + sentence_right + "</font>" + '</td></tr>');
-//        utils.match_row_height("#multi_slider_table", ".slider_target");
-//      }
-
-    },
-
-    button : function() {
-      console.log(exp.sliderPost);
-      var checked_radio  = $('input[name="response2"]:checked');
-      if (checked_radio.val() != undefined) {
-        this.log_responses();
-        _stream.apply(this); //use exp.go() if and only if there is no "present" data.
-      } else {
-        $(".err").show();
-      }
-    },
-
-    init_sliders : function() {
-      utils.make_slider("#slider0", function(event, ui) {
-        exp.sliderPost = ui.value;
-      });
-    },
-//    make_slider_callback : function(i) {
-//      return function(event, ui) {
-//        exp.sliderPost[i] = ui.value;
-//      };
-//    },
-    log_responses : function() {
-        exp.data_trials.push({
-          "response": $('input[name="response2"]:checked').val(),
-          "noun" : this.stim.Noun,          
-          "nounclass" : this.stim.NounClass,
-          "class" : "NA",                    
-          "firstutterance" : "NA",      
-          "block_number" : exp.blockidentity,           
-          "slide_number" : exp.phase,
-          "block":"identity"
-        });
-    },
-});
-
-  slides.likeability = slide({
-    name : "likeability",
-    present : third_stimuli, //make second set of stimuli here 
-    present_handle : function(stim) {
-      $(".err").hide();
-      this.init_sliders();      
-      exp.sliderPost = null;
-      // $('input[name="sense"]:checked').attr('checked',false);
-      this.stim = stim; //FRED: allows you to access stim in helpers
-      //var noun_data = _.sample(corpus.Noun)
-      //this.noun_data = noun_data;
-      //var noun = noun_data.noun;
-      //var animacy = noun_data.animacy;
-      //this.verbs = _.shuffle(["is","is not"])
-      //var names_list = _.shuffle(names);
-      //$("input[type=radio]").attr("checked", null);
-
-      //var man1 = names_list[0];
-      //var man2 = names_list[1];
-
-      //$(".man1").html(man1);
-
-      //$(".man2").html(man2);
-
-      $(".singular").html(stim.Singular);
-      $(".noun").html(stim.Noun);
-
-      //$(".woman1").html(woman1);
-
-      //$(".woman2").html(man2);
-
-      //$(".utterance1").html("\"That "+ stim.Noun + " " + this.verbs[0] + " " + stim.Predicate + ".\"");
-
-      //$(".utterance2").html("\"You're wrong. That "+ stim.Noun + " " + this.verbs[1] + " "  + stim.Predicate + ".\"");
-
-//      this.sentence_types = _.shuffle(["yes","no"]);
-//      this.sentence_types = ["no","yes"];
-//      var sentences = {
-//        "yes": "Yes, it's a matter of opinion.",
-//        "no": "No, somebody must be wrong.",
-//      };
-
-//      this.n_sliders = this.sentence_types.length;
-    this.n_sliders = 1;
-//      $(".slider_row").remove();
-//      for (var i=0; i<this.n_sliders; i++) {
-//        var sentence_type_left = this.sentence_types[0];
-//        var sentence_type_left = this.sentence_types[1];        
-//        var sentence_left = sentences[sentence_type_left];
-//        var sentence_right = sentences[sentence_type_right];        
-//        $("#multi_slider_table").append('<tr class="slider_row"><td class="slider_target" id="sentence0">' + "<font size='4'>" + sentence_left + "</font>" + '</td><td colspan="2"><div id="slider0" class="slider">-------[ ]--------</div></td><td class="slider_target" id="sentence1">' + "<font size='4'>" + sentence_right + "</font>" + '</td></tr>');
-//        utils.match_row_height("#multi_slider_table", ".slider_target");
-//      }
-
-    },
-
-    button : function() {
-      console.log(exp.sliderPost);
-      //var checked_radio  = $('input[name="response2"]:checked');
-      if (exp.sliderPost != null) {
-        this.log_responses();
-        _stream.apply(this); //use exp.go() if and only if there is no "present" data.
-      } else {
-        $(".err").show();
-      }
-    },
-
-    init_sliders : function() {
-      utils.make_slider("#slider0", function(event, ui) {
-        exp.sliderPost = ui.value;
-      });
-    },
-//    make_slider_callback : function(i) {
-//      return function(event, ui) {
-//        exp.sliderPost[i] = ui.value;
-//      };
-//    },
-    log_responses : function() {
-        exp.data_trials.push({
-          "response" : exp.sliderPost,
-          //"radio_response": $('input[name="response2"]:checked').val(),
-          "noun" : this.stim.Noun,          
-          "nounclass" : this.stim.NounClass,
-          "class" : "NA",                    
-          "firstutterance" : "NA",
-          "block_number" : exp.blocklikeability,           
-          "slide_number" : exp.phase,
-          "block":"likeability"
-        });
-    },
-});
 
   slides.subj_info =  slide({
     name : "subj_info",

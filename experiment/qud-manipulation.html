@@ -92,9 +92,9 @@ If you agree to participate, please proceed to the study tasks.</p>
 
   <p class="name_said"></p>
 
-    <p>Michelle is a software developer at Apple. She works on the Apple Music group, which is composed of many subteams. Each of the subteams in her larger group is composed of either all men or all women. The other day at her team's weekly meeting, her boss unveiled that he would be choosing a subteam to work on a new project, and that he would choose a subteam based on their high level of competence. She raised her hand to speak in the meeting and said, </p>
+    <p><span class = "cover_story">{{}}</span></p>
 
-    <p><b>"Women are competent."</b></p>
+    <p><b><span class = "statement">{{}}</span></b></p>
 
 <!--    <p><span class = "woman">{{}}</span> sold a <span class="noun">{{}}</span> in her store.</p>
 
@@ -109,101 +109,18 @@ If you agree to participate, please proceed to the study tasks.</p>
     <label><input type="radio"  name="sense" value="No"/>No</label>
     </br></br>
  -->
-    <p><i>How competent are women?</i></p>
+    <p><i>How <span class = "predicate">{{}}</span> are <span class = "crit_noun">{{}}</span>, according to Michelle?</i></p>
 
     <table id="multi_slider_table" class="slider_table">
 <!--      <tr><td class="left">No, somebody must be wrong.</td><td class="right">Yes, it's a matter of opinion.</td></tr> -->
-      <tr><td>Extremely competent</td><td><div id="slider0" class="slider"></div></td><td>Extremely incompetent</td></tr>
+      <tr><td>Extremely <span class = "opposite">{{}}</span></td><td><div id="slider0" class="slider"></div></td><td>Extremely <span class = "predicate">{{}}</span></td></tr>
     </table>
 
-    <p><i>How competent are men?</i></p>
+    <p><i>How <span class = "predicate">{{}}</span> are <span class = "other_noun">{{}}</span>, according to Michelle?</i></p>
 
     <table id="multi_slider_table" class="slider_table">
 <!--      <tr><td class="left">No, somebody must be wrong.</td><td class="right">Yes, it's a matter of opinion.</td></tr> -->
-      <tr><td>Extremely competent</td><td><div id="slider1" class="slider"></div></td><td>Extremely incompetent</td></tr>
-    </table>
-
-    <button onclick="_s.button()">Continue</button>
-    <div class="err">Please answer all questions before continuing.</div>
-
-  <div class="slide" id="instructions2">
-    <h3>Part 2 Instructions</h3>
-    <p> We will now ask you questions about you and how you relate to different groups of people.</p>
-    <!-- <p class="instruction_condition">{{}}</p> -->
-    <button onclick="_s.button()">Continue</button>
-  </div>
-
-<!-- ****************************************************************************
-  *******************************************************************************
-  *******************************************************************************
-  *******************************************************************************
-  *******************************************************************************
-  STILL UNDONE: PART 2 WITH SLIDERS AND RADIO BUTTONS FOR IDENTIFYING PEOPLE -->
-
-  <div class="slide" id="identity">
-
-  <p class="name_said"></p>
-
-    <p>Do you identify as a <span class = "singular">{{}}</span>?</p>
-    <div id = "radio_outer_container" align = 'center'>
-      <div id="radio_inner_container" align="left">
-<!--      <tr><td class="left">No, somebody must be wrong.</td><td class="right">Yes, it's a matter of opinion.</td></tr> -->
-      <!---<tr><td>No, somebody must be wrong.</td><td><div id="slider0" class="slider"></div></td><td>Yes, it's a matter of opinion.</td></tr>-->
-        <label><input type="radio"  name="response2" value="Yes"/>Yes</label>
-        <br/>
-        <label><input type="radio"  name="response2" value="No"/>No</span></label>
-        <br/>
-        <label><input type="radio"  name="response2" value="Confused"/>Not Sure</label>
-      </div>
-    </div>
-    <br/>
-
-<!--    <p><span class = "woman">{{}}</span> sold a <span class="noun">{{}}</span> in her store.</p>
-
-    <p><span class="man1">{{}}</span> entered <span class = "woman">{{}}</span>'s store, noticed the <span class="noun">{{}}</span>, and said:</p>
-    <p><span class="man1">{{}}</span> and <span class="man2">{{}}</span> see the same <span class="noun">{{}}</span>.</p> 
-    <p><span class="man1">{{}}</span> says: <b><span class="utterance1">{{}}</span></b></p>
-
-    <p><span class="man2">{{}}</span> responds: <b><span class="utterance2">{{}}</span></b></p>-->
-
-<!--     <p>Do the statements make sense?</p>
-    <label><input type="radio"  name="sense" value="Yes"/>Yes</label>
-    <label><input type="radio"  name="sense" value="No"/>No</label>
-    </br></br>
- -->
-    <!--<p>How likeable do you find <span class = "noun">{{}}</span>?</p>
-
-    <table id="multi_slider_table" class="slider_table">
-      <tr><td class="left">No, somebody must be wrong.</td><td class="right">Yes, it's a matter of opinion.</td></tr>
-      <tr><td>Extremely unlikeable</td><td><div id="slider0" class="slider"></div></td><td>Extremely likeable</td></tr>
-    </table> -->
-
-    <button onclick="_s.button()">Continue</button>
-    <div class="err">Please answer all questions before continuing.</div>
-  </div>
-
-  <div class="slide" id="likeability">
-
-  <p class="name_said"></p>
-
-<!--    <p><span class = "woman">{{}}</span> sold a <span class="noun">{{}}</span> in her store.</p>
-
-    <p><span class="man1">{{}}</span> entered <span class = "woman">{{}}</span>'s store, noticed the <span class="noun">{{}}</span>, and said:</p>
-    <p><span class="man1">{{}}</span> and <span class="man2">{{}}</span> see the same <span class="noun">{{}}</span>.</p> 
-    <p><span class="man1">{{}}</span> says: <b><span class="utterance1">{{}}</span></b></p>
-
-    <p><span class="man2">{{}}</span> responds: <b><span class="utterance2">{{}}</span></b></p>-->
-
-<!--     <p>Do the statements make sense?</p>
-    <label><input type="radio"  name="sense" value="Yes"/>Yes</label>
-    <label><input type="radio"  name="sense" value="No"/>No</label>
-    </br></br>
- -->
-    <p>How likeable do you find <span class = "noun">{{}}</span>?</p>
-
-    <table id="multi_slider_table" class="slider_table">
-<!--      <tr><td class="left">No, somebody must be wrong.</td><td class="right">Yes, it's a matter of opinion.</td></tr> -->
-      <tr><td>Extremely unlikeable</td><td><div id="slider0" class="slider"></div></td><td>Extremely likeable</td></tr>
+      <tr><td>Extremely <span class = "opposite">{{}}</span></td><td><div id="slider1" class="slider"></div></td><td>Extremely <span class = "predicate">{{}}</span></td></tr>
     </table>
 
     <button onclick="_s.button()">Continue</button>
