@@ -6,7 +6,9 @@
 //		]
 
 var predicates = [
-		{"CoverStory":"Michelle is a senator of a major political party and is a member of many legislative committees. Every legislative committee is composed of either all Democrats or all Republicans. The other day in a Senate session, the head of the Senate unveiled that he would be choosing an existing legislative committee to work on a new project based on their high level of competence. She raised her hand to speak in the meeting and said,","Statement":"Democrats are competent.","CritNoun":"Democrats","OtherNoun":"Republicans","Predicate":"competent","Opposite":"incompetent","NounClass":"gender","Class":"positive","QUD":"who","POS":"adjective"}
+		[{"CoverStory":"Michelle is a senator of a major political party and is a member of many legislative committees. Every legislative committee is composed of either all Democrats or all Republicans. The other day in a Senate session, the head of the Senate unveiled that he would be choosing an existing legislative committee to work on a new project based on their competence. She raised her hand to speak in the meeting and said,","Statement":"Democrats are competent.","CritNoun":"Democrats","OtherNoun":"Republicans","Predicate":"competent","Opposite":"incompetent","NounClass":"gender","Class":"positive","QUD":"who","POS":"adjective"}
+		]
+
 ]
 
 var neutrals = _.shuffle([

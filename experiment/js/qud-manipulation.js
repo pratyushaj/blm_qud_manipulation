@@ -29,8 +29,10 @@ function make_slides(f) {
     present : stimuli,
     present_handle : function(stim) {
 
-      //hiding error message on first presentation
+      //hiding comprehension question error messages, critical sliders
       $(".err").hide();
+      $(".no_response").hide();
+      $(".critical").hide();
 
       //create 2 sliders per trial, both set to null on first presentation
       this.init_sliders(); 
@@ -53,8 +55,35 @@ function make_slides(f) {
 
     },
 
+    button_comprehension : function() {
 
-    button : function() {
+      var checked_radio  = $('input[name="response"]:checked').val();
+
+      if (checked_radio == undefined)
+      {
+        $(".no_response").show();
+      }
+      else
+      {
+        $(".no_response").hide();
+        if (checked_radio == 'no') 
+        {
+          $(".comprehension").hide();
+          $(".critical").show();
+          $(".err2").hide();
+
+        }
+        else 
+        {
+          $("input[type=radio]").attr("checked", null);
+          $(".err").show();
+        }
+
+      }
+      
+    },
+
+    button_critical : function() {
       if (exp.sliderPost1 != null && exp.sliderPost2 !=null) 
       {
         this.log_responses();

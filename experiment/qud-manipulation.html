@@ -90,8 +90,6 @@ If you agree to participate, please proceed to the study tasks.</p>
 
   <div class="slide" id="cover_stories">
 
-  <p class="name_said"></p>
-
     <p><span class = "cover_story">{{}}</span></p>
 
     <p><b><span class = "statement">{{}}</span></b></p>
@@ -109,22 +107,42 @@ If you agree to participate, please proceed to the study tasks.</p>
     <label><input type="radio"  name="sense" value="No"/>No</label>
     </br></br>
  -->
-    <p><i>How <span class = "predicate">{{}}</span> are <span class = "crit_noun">{{}}</span>, according to Michelle?</i></p>
+    <div class = 'comprehension'>
+      <p><i>Has the head of the Senate chosen a committee yet?</i></p>
 
-    <table id="multi_slider_table" class="slider_table">
-<!--      <tr><td class="left">No, somebody must be wrong.</td><td class="right">Yes, it's a matter of opinion.</td></tr> -->
-      <tr><td>Extremely <span class = "opposite">{{}}</span></td><td><div id="slider0" class="slider"></div></td><td>Extremely <span class = "predicate">{{}}</span></td></tr>
-    </table>
+      <div id = "radio_outer_container" align = "center">
+        <div id="radio_inner_container" align="left">
+  <!--      <tr><td class="left">No, somebody must be wrong.</td><td class="right">Yes, it's a matter of opinion.</td></tr> -->
+        <!---<tr><td>No, somebody must be wrong.</td><td><div id="slider0" class="slider"></div></td><td>Yes, it's a matter of opinion.</td></tr>-->
+        <label><input type="radio"  id = "r1" name="response" value = "yes"/><span id = "r1_span">Yes</span></label>
+        <br/>
+        <label><input type="radio"  id = "r2" name="response" value = "no"/><span id = "r2_span">No</span></label>
+        </div>
+      </div>
 
-    <p><i>How <span class = "predicate">{{}}</span> are <span class = "other_noun">{{}}</span>, according to Michelle?</i></p>
+      <button onclick="_s.button_comprehension()">Continue</button>
+      <div class="err">Are you sure? Please re-read the cover story and try again.</div>
+      <div class = "no_response">Please answer all questions before continuing.</div>
+    </div>
 
-    <table id="multi_slider_table" class="slider_table">
-<!--      <tr><td class="left">No, somebody must be wrong.</td><td class="right">Yes, it's a matter of opinion.</td></tr> -->
-      <tr><td>Extremely <span class = "opposite">{{}}</span></td><td><div id="slider1" class="slider"></div></td><td>Extremely <span class = "predicate">{{}}</span></td></tr>
-    </table>
+    <div class = 'critical'>
+      <p><i>How <span class = "predicate">{{}}</span> are <span class = "crit_noun">{{}}</span>, according to Michelle?</i></p>
 
-    <button onclick="_s.button()">Continue</button>
-    <div class="err">Please answer all questions before continuing.</div>
+      <table id="multi_slider_table" class="slider_table">
+  <!--      <tr><td class="left">No, somebody must be wrong.</td><td class="right">Yes, it's a matter of opinion.</td></tr> -->
+        <tr><td>Extremely <span class = "opposite">{{}}</span></td><td><div id="slider0" class="slider"></div></td><td>Extremely <span class = "predicate">{{}}</span></td></tr>
+      </table>
+
+      <p><i>How <span class = "predicate">{{}}</span> are <span class = "other_noun">{{}}</span>, according to Michelle?</i></p>
+
+      <table id="multi_slider_table" class="slider_table">
+  <!--      <tr><td class="left">No, somebody must be wrong.</td><td class="right">Yes, it's a matter of opinion.</td></tr> -->
+        <tr><td>Extremely <span class = "opposite">{{}}</span></td><td><div id="slider1" class="slider"></div></td><td>Extremely <span class = "predicate">{{}}</span></td></tr>
+      </table>
+
+      <button onclick="_s.button_critical()">Continue</button>
+      <div class="err2">Please answer all questions before continuing.</div>
+    </div>
   </div>
 
   <div class="slide"  id="subj_info">
