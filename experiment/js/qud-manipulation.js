@@ -30,14 +30,19 @@ function make_slides(f) {
     present_handle : function(stim) {
 
       //hiding comprehension question error messages, critical sliders
+      $(".comprehension").show();
       $(".err").hide();
       $(".no_response").hide();
       $(".critical").hide();
+      $("input[type=radio]").attr("checked", null);
 
       //create 2 sliders per trial, both set to null on first presentation
       this.init_sliders(); 
       exp.sliderPost1 = null;
       exp.sliderPost2 = null;
+
+      //number of answers to comprehension question wrong so far, initialized to 0
+      wrong = 0;
      
       //getting access to stimuli
       this.stim = stim; //FRED: allows you to access stim in helpers
@@ -51,6 +56,15 @@ function make_slides(f) {
       $(".statement").html(stim.Statement);
       $(".cover_story").html(stim.CoverStory);
 
+      //gymnastics related to comprehension question 
+      parts = (stim.Comprehension).split('/');
+      $(".boss").html(parts[0]);
+      $(".group").html(parts[1]);
+
+      //gymnastics related to critical trials 
+      words = (stim.CoverStory).split(' ');
+      $(".speaker").html(words[0]);
+
 		  this.n_sliders = 2;
 
     },
@@ -58,6 +72,22 @@ function make_slides(f) {
     button_comprehension : function() {
 
       var checked_radio  = $('input[name="response"]:checked').val();
+      var correct_answer = 'flu';
+
+      console.log(this.stim.QUD);
+      console.log(checked_radio);
+
+      //determining correct answer to "Has the blah blah blah picked a blah yet?"
+      if (this.stim.QUD == 'are'){
+        correct_answer = 'yes';
+      }
+      else if (this.stim.QUD == 'who'){
+        correct_answer = 'no';
+      }
+
+      console.log(correct_answer);
+
+      //checking that comprehension question has been answered, then checking if the answer was correct 
 
       if (checked_radio == undefined)
       {
@@ -66,7 +96,7 @@ function make_slides(f) {
       else
       {
         $(".no_response").hide();
-        if (checked_radio == 'no') 
+        if (checked_radio == correct_answer) //if (checked_radio == correct_answer)
         {
           $(".comprehension").hide();
           $(".critical").show();
@@ -77,6 +107,7 @@ function make_slides(f) {
         {
           $("input[type=radio]").attr("checked", null);
           $(".err").show();
+          wrong++;
         }
 
       }
@@ -111,12 +142,14 @@ function make_slides(f) {
     log_responses : function() {
         exp.data_trials.push({
           "response" : exp.sliderPost1,
+          "wrongs" : wrong,
           "crit_noun" : this.stim.CritNoun,
           "response_other":exp.sliderPost2,
           "other_noun": this.stim.OtherNoun,         
           "predicate" : this.stim.Predicate,
           "nounclass" : this.stim.NounClass,
           "qud":this.stim.QUD,
+          "speaker_order":this.stim.SpeakerOrder,
           "class" : this.stim.Class,                    
           "block_number" : "1",      
           "slide_number" : exp.phase,
@@ -124,6 +157,109 @@ function make_slides(f) {
         });
     },
   });
+
+  slides.instructions2 = slide({
+    name : "instructions2",
+    start: function() {
+      $(".instruction_condition").html("Between subject instruction manipulation: "+ exp.instruction);
+    }, 
+    button : function() {
+      exp.go(); //use exp.go() if and only if there is no "present" data.
+    }
+  });
+
+  slides.priors = slide({
+    name : "priors",
+    present : secondStimuli, //make second set of stimuli here 
+    present_handle : function(stim) {
+      $(".err").hide();
+      this.init_sliders();      
+      exp.sliderPost = null;
+      // $('input[name="sense"]:checked').attr('checked',false);
+      this.stim = stim; //FRED: allows you to access stim in helpers
+      //var noun_data = _.sample(corpus.Noun)
+      //this.noun_data = noun_data;
+      //var noun = noun_data.noun;
+      //var animacy = noun_data.animacy;
+      //this.verbs = _.shuffle(["is","is not"])
+      //var names_list = _.shuffle(names);
+      //$("input[type=radio]").attr("checked", null);
+
+      //var man1 = names_list[0];
+      //var man2 = names_list[1];
+
+      //$(".man1").html(man1);
+
+      //$(".man2").html(man2);
+
+      $(".predicate").html(stim.Predicate);
+      $(".noun").html(stim.Noun);
+      $(".opposite").html(stim.Opposite);
+
+      //$(".woman1").html(woman1);
+
+      //$(".woman2").html(man2);
+
+      //$(".utterance1").html("\"That "+ stim.Noun + " " + this.verbs[0] + " " + stim.Predicate + ".\"");
+
+      //$(".utterance2").html("\"You're wrong. That "+ stim.Noun + " " + this.verbs[1] + " "  + stim.Predicate + ".\"");
+
+//      this.sentence_types = _.shuffle(["yes","no"]);
+//      this.sentence_types = ["no","yes"];
+//      var sentences = {
+//        "yes": "Yes, it's a matter of opinion.",
+//        "no": "No, somebody must be wrong.",
+//      };
+
+//      this.n_sliders = this.sentence_types.length;
+    this.n_sliders = 1;
+//      $(".slider_row").remove();
+//      for (var i=0; i<this.n_sliders; i++) {
+//        var sentence_type_left = this.sentence_types[0];
+//        var sentence_type_left = this.sentence_types[1];        
+//        var sentence_left = sentences[sentence_type_left];
+//        var sentence_right = sentences[sentence_type_right];        
+//        $("#multi_slider_table").append('<tr class="slider_row"><td class="slider_target" id="sentence0">' + "<font size='4'>" + sentence_left + "</font>" + '</td><td colspan="2"><div id="slider0" class="slider">-------[ ]--------</div></td><td class="slider_target" id="sentence1">' + "<font size='4'>" + sentence_right + "</font>" + '</td></tr>');
+//        utils.match_row_height("#multi_slider_table", ".slider_target");
+//      }
+
+    },
+
+    button : function() {
+      console.log(exp.sliderPost);
+      //var checked_radio  = $('input[name="response2"]:checked');
+      if (exp.sliderPost != null) {
+        this.log_responses();
+        _stream.apply(this); //use exp.go() if and only if there is no "present" data.
+      } else {
+        $(".err").show();
+      }
+    },
+
+    init_sliders : function() {
+      utils.make_slider("#slider2", function(event, ui) {
+        exp.sliderPost = ui.value;
+      });
+    },
+//    make_slider_callback : function(i) {
+//      return function(event, ui) {
+//        exp.sliderPost[i] = ui.value;
+//      };
+//    },
+    log_responses : function() {
+        exp.data_trials.push({
+          "response" : exp.sliderPost,
+          //"radio_response": $('input[name="response2"]:checked').val(),
+          "noun" : this.stim.Noun,          
+          "predicate" : this.stim.Predicate,
+          "class" : "NA",                    
+          "firstutterance" : "NA",
+          "block_number" : exp.block,           
+          "slide_number" : exp.phase,
+          "block":"priors"
+        });
+    },
+});
 
   slides.subj_info =  slide({
     name : "subj_info",
@@ -184,7 +320,7 @@ function init() {
     exp.blocklikeability = 3;
     exp.blockidentity = 2;    
   }
-  exp.structure=["i0", "instructions1",'cover_stories', 'subj_info', 'thanks'];
+  exp.structure=["i0", "instructions1",'cover_stories','instructions2','priors', 'subj_info', 'thanks'];
   
   exp.data_trials = [];
   //make corresponding slides:
