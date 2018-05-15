@@ -253,8 +253,7 @@ function make_slides(f) {
           "noun" : this.stim.Noun,          
           "predicate" : this.stim.Predicate,
           "class" : "NA",                    
-          "firstutterance" : "NA",
-          "block_number" : exp.block,           
+          "block_number" : "2",           
           "slide_number" : exp.phase,
           "block":"priors"
         });
@@ -327,7 +326,7 @@ function init() {
 
   exp.slides = make_slides(exp);
 
-  exp.nQs = 5+45+9+9;//
+  exp.nQs = 1+1+8+1+8+1+1;//
 
   $('.slide').hide(); //hide everything
 
