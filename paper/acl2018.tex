@@ -124,20 +124,6 @@ Each participant was presented with each of the eight stimuli created for the pr
 
 They asked \textit{How }\texttt{predicate } \textit{do you find }\texttt{social group noun}\textit{?} They adjusted two sliding scales with endpoints labeled “extremely \texttt{opposite of predicate}” and “extremely \texttt{predicate}” to indicate their responses for both the group noun in the utterance and its complement. Slider values were coded in the same way as for the cover story manipulation phase.
 
-\begin{table*}
-\centering
-\begin{tabular}{llll}
-  Variable & $\beta$ & 95\% CI&$P(\beta) > 0$\\
-  \hline
-  QUD & $0.00$ & {[}-0.03,0.02{]} &$0.2331$\\
-  response type & $-0.28$ & {[}-0.33,-0.24{]} &$0$\\
-  QUD * response type & $-0.03$ & {[}-0.08,0.02{]} &$0.1015$\\
-  prior beliefs & $0.09$ & {[}0.03,0.16{]} &$0.9963$\\
-\end{tabular}
-\caption{Posterior mean $\beta$, 95\% confidence interval, and $P(\beta) > 0$ for all fixed effects and interactions.
-  }
-\end{table*}
-
 \begin{figure}[h]
 \includegraphics[width=\linewidth]{qud_means.png}
 \caption{Mean response to as a function of QUD to target and other social group noun.}
@@ -164,6 +150,27 @@ To address these questions, we conducted a Bayesian generalized multivariate non
 The model predicted the log odds of slider response representing a participant's judgment of the speaker's beliefs about the extent to which \texttt{social group noun} is \texttt{predicate} from fixed effects of the QUD, response type (whether the response given is in reference to the critical noun versus the other noun), their interaction, and the participant's prior beliefs. In order to avoid problems related to collinearity, we centered all predictor variables. We included the maximal random effects structure justified by the design: random by-participant and by-item slopes for the interaction between QUD and response type and the prior belief (reflecting the possibility that the effects of these variables could vary by participant and by item). Four chains converged after 2000 iterations each (warmup = 1000, \(\hat{R}=1\) for all estimated parameters). T 
 
 We report 95\% confidence intervals and the posterior probabilities $P(\beta > 0)$ that coefficients for QUD, response type, their interaction, and prior beliefs are greater than zero. We also provide 95\% confidence intervals (CI) of the posterior distributions for each coefficient.  Finally, if zero is not included in the CI for the posterior distribution of a variable's coefficient, we have strong reason to believe it has a significant effect on slider response. So too, if $P(\beta > 0)$ is close to zero or one.
+
+\begin{table*}
+\centering
+\begin{tabular}{llll}
+  Variable & $\beta$ & 95\% CI&$P(\beta) > 0$\\
+  \hline
+  QUD & $0.00$ & {[}-0.03,0.02{]} &$0.2331$\\
+  response type & $-0.28$ & {[}-0.33,-0.24{]} &$0$\\
+  QUD * response type & $-0.03$ & {[}-0.08,0.02{]} &$0.1015$\\
+  prior beliefs & $0.09$ & {[}0.03,0.16{]} &$0.9963$\\
+\end{tabular}
+\caption{Posterior mean $\beta$, 95\% confidence interval, and $P(\beta) > 0$ for all fixed effects and interactions.
+  }
+\end{table*}
+
+\begin{figure}[h]
+\includegraphics[width=\linewidth]{beta.png}
+\caption{Posterior distributions for all \betas of model predictors.}
+\label{nounclass}
+\end{figure}
+
 
 Table 1 presents posterior mean $\beta$, 95\% CI, and $P(\beta > 0)$ for each of the predictors to the model, and Figure 4 presents the posterior distributions of the coefficients of each predictor. From Table 1 and Figure 4 together it is clear that there is a significant effect of response type and prior, but no significant effect of QUD and no significant interaction. These results align with the intuitions obtained from examining the data visualizations. Nevertheless, we find that our original predictions that QUD would have a significant effect on participant judgments of speaker beliefs were not borne out. We interpret these results, reason about their origins, and propose future directions in the next section. 
 
